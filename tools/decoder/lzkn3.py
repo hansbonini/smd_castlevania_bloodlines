@@ -82,6 +82,7 @@ if __name__ == '__main__':
             Tiny Toon Adventures - Acme All-Stars
         ''')
   )
+
   cmd.add_argument(
       'infile',
       nargs='?',
@@ -90,11 +91,19 @@ if __name__ == '__main__':
       help='Original Genesis / Mega Drive rom file.'
   )
 
+  cmd.add_argument(
+      'offset',
+      nargs='?',
+      type=lambda x: int(x, 0),
+      default=0,
+      help='Offset of compressed LZ data.'
+  )
+
   """ Program Main Routine """
   args = cmd.parse_args()
   if(args.infile.name != '<stdin>'):
     with args.infile as rom:
-      rom.seek(0xa8336)
+      rom.seek(args.offset)
       # Initialize a clear buffer for Output Data
       output = io.BytesIO()
       # Initialize a new LZWindow for Decompression
@@ -172,7 +181,11 @@ if __name__ == '__main__':
               decompressed_bytes += 1
           rbits -= 1
     output.seek(0x0)
-    with open('test.bin', 'wb') as dumpfile:
+    try:
+      os.stat('data')
+    except:
+      os.mkdir('data')
+    with open('data/original_0x' + '{:08X}'.format(args.offset) + '.bin', 'wb') as dumpfile:
       dumpfile.write(output.read())
   else:
     cmd.print_help()

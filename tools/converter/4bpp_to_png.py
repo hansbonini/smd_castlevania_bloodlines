@@ -13,9 +13,10 @@ if __name__ == '__main__':
   cmd = argparse.ArgumentParser(
       formatter_class=argparse.RawDescriptionHelpFormatter,
       description=textwrap.dedent('''\
-            [Utility] 4BPP to PNG
+            [SMD] Sega Genesis / Mega Drive 4BPP to PNG
             ----------------------------------------------
-            Tool for convert 4BPP tiles to PNG
+            Tool for convert Sega Genesis / Mega Drive
+            4BPP tiles to PNG
         ''')
   )
   cmd.add_argument(
@@ -66,9 +67,13 @@ if __name__ == '__main__':
       bindata.seek(0, 2)
       binlen = bindata.tell()
       bindata.seek(0, 0)
+
+      image_width = (args.cols * 8)
+      image_height = (args.lines * 8)
+
       # Create a new output image buffer
       outputImage = Image.new(
-          'RGBA', (args.cols * 8, args.lines * 8), (255, 0, 0, 0))
+          'RGBA', (image_width, image_height), (255, 0, 0, 0))
       # Load Pixel Map
       pixels = outputImage.load()
       # Clear Buffer
@@ -100,13 +105,13 @@ if __name__ == '__main__':
         G = ((pixel >> 2) & 0x1) * 100
         R = ((pixel >> 3) & 0x1) * 100
         # Get X , Y and put on Image
-        x = column + int((tile * 8) % 128)
-        y = line + (int((tile * 8) / 128) * 8)
+        x = column + int((tile * 8) % image_width)
+        y = line + (int((tile * 8) / image_width) * 8)
         pixels[x, y] = (R, G, B, A)
     try:
       os.stat('gfx')
     except:
       os.mkdir('gfx')
-    outputImage.save('gfx/' + args.output)
+    outputImage.save('gfx/' + args.output, dpi=(300, 300))
   else:
     cmd.print_help()
