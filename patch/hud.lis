@@ -1,0 +1,131 @@
+00000000                                     1  * **********************************************
+00000000                                     2  * [SMD] Castlevania Bloodlines (U) [!]
+00000000                                     3  * **********************************************
+00000000                                     4  * HUD Patch
+00000000                                     5  * **********************************************
+00000000                                     6  
+00000000                                     7    * PATCH SCORE ON HUD
+0000B9EA                                     8    org $0000B9EA
+0000B9EA                                     9  patch_hud_score:
+0000B9EA  8500                              10    dc.w  $8500 ; P
+0000B9EC  8500                              11    dc.w  $8500 ; O
+0000B9EE  8500                              12    dc.w  $8500 ; N
+0000B9F0  8500                              13    dc.w  $8500 ; T
+0000B9F2  8500                              14    dc.w  $8500 ; U
+0000B9F4  8500                              15    dc.w  $8500 ; U
+0000B68E                                    16    org   $B68E
+0000B68E  B090                              17    dc.w  $B090
+0000B690                                    18  
+0000B690                                    19    * PATCH PLAYER ON HUD
+0000B54A                                    20    org   $0000B54A
+0000B54A  000F7B00                          21    dc.l  patch_hud_player
+0000B54E  0000B102                          22    dc.l  $0000B102  ; POSITION ON WINDOW
+0000B552  0007                              23    dc.w  $0007      ; LENGHT
+0000B554                                    24  
+0000B554                                    25    * PATCH ENEMY ON HUD
+0000B55E                                    26    org   $0000B55E
+0000B55E  000F7B0E                          27    dc.l  patch_hud_enemy
+0000B562  0000B182                          28    dc.l  $0000B182  ; POSITION ON WINDOW
+0000B566  0011                              29    dc.w  $0011      ; LENGHT
+0000B568                                    30  
+0000B568                                    31    * PATCH STAGE ON HUD
+0000B572                                    32    org   $0000B572
+0000B572  000F7B30                          33    dc.l  patch_hud_stage
+0000B576  0000B0B6                          34    dc.l  $0000B0B6  ; POSITION ON WINDOW
+0000B57A  0007                              35    dc.w  $0007      ; LENGHT
+0000B6FA                                    36    org   $000B6FA
+0000B6FA  B0C6                              37    dc.w  $B0C6       ; MOVE STAGE #-#
+0000B6FC                                    38  
+0000B6FC                                    39    * PATCH REST ON HUD
+0000B57C                                    40    org   $0000B57C
+0000B57C  000F7B3E                          41    dc.l  patch_hud_rest
+0000B580  0000B1BA                          42    dc.l  $0000B1BA  ; POSITION ON WINDOW
+0000B584  0005                              43    dc.w  $0005      ; LENGHT
+0000B586                                    44  
+0000B586                                    45    * PATCH HUD LINE 1
+0000BA0A                                    46    org   $0000BA0A
+0000BA0A  8500                              47    dc.w  $8500 ; SPACE
+0000BA0C  8524                              48    dc.w  $8524 ; ITEM FRAME
+0000BA0E  8500                              49    dc.w  $8500 ; ITEM FRAME
+0000BA10  8500                              50    dc.w  $8500 ; ITEM FRAME
+0000BA12  8D24                              51    dc.w  $8D24 ; ITEM FRAME
+0000BA14  8500                              52    dc.w  $8500 ; SPACE
+0000BA16  8538                              53    dc.w  $8538 ; XTAL
+0000BA18  853A                              54    dc.w  $853A ; XTAL
+0000BA1A  8500                              55    dc.w  $8500 ; SPACE
+0000BA1C                                    56  
+0000BA1C                                    57    * PATCH HUD LINE 0
+0000BA5A                                    58    org   $0000BA5A
+0000BA5A  8522                              59    dc.w  $8522 ; ITEM FRAME
+0000BA5C  8523                              60    dc.w  $8523 ; ITEM FRAME
+0000BA5E  8523                              61    dc.w  $8523 ; ITEM FRAME
+0000BA60  8D22                              62    dc.w  $8D22 ; ITEM FRAME
+0000BA62                                    63  
+0000BA62                                    64    * PATCH HUD LINE 2
+0000BA62  8524                              65    dc.w  $8524 ; ITEM FRAME
+0000BA64  8500                              66    dc.w  $8500 ; ITEM FRAME
+0000BA66  8500                              67    dc.w  $8500 ; ITEM FRAME
+0000BA68  8D24                              68    dc.w  $8D24 ; ITEM FRAME
+0000BA6A  8500                              69    dc.w  $8500 ; SPACE
+0000BA6C  8539                              70    dc.w  $8539 ; XTAL
+0000BA6E  853B                              71    dc.w  $853B ; XTAL
+0000BA70  8500                              72    dc.w  $8500 ; SPACE
+0000BA72                                    73  
+0000BA72                                    74    *PATCH HUD LINE 3
+0000BA72  9522                              75    dc.w  $9522 ; ITEM FRAME
+0000BA74  9523                              76    dc.w  $9523 ; ITEM FRAME
+0000BA76  9523                              77    dc.w  $9523 ; ITEM FRAME
+0000BA78  9D22                              78    dc.w  $9D22 ; ITEM FRAME
+0000BA7A                                    79  
+0000BA7A                                    80    *PATCH TO XTAL COUNT
+0000B6C4                                    81    org   $0000B6C4
+0000B6C4  B1B0                              82    dc.w  $B1B0
+0000B6C6                                    83  
+000F7B00                                    84    org $000F7B00
+000F7B00                                    85  patch_hud_player:
+000F7B00  850B                              86    dc.w  $850B ; J
+000F7B02  850C                              87    dc.w  $850C ; O
+000F7B04  850D                              88    dc.w  $850D ; G
+000F7B06  850E                              89    dc.w  $850E ; A
+000F7B08  850F                              90    dc.w  $850F ; D
+000F7B0A  850C                              91    dc.w  $850C ; O
+000F7B0C  8510                              92    dc.w  $8510 ; R
+000F7B0E                                    93  
+000F7B0E                                    94  patch_hud_enemy:
+000F7B0E  8511                              95    dc.w  $8511 ; I
+000F7B10  8512                              96    dc.w  $8512 ; N
+000F7B12  8511                              97    dc.w  $8511 ; I
+000F7B14  8514                              98    dc.w  $8514 ; M
+000F7B16  8511                              99    dc.w  $8511 ; I
+000F7B18  850D                             100    dc.w  $850D ; G
+000F7B1A  850C                             101    dc.w  $850C ; O
+000F7B1C                                   102    * SPACES BEFORE
+000F7B1C  851C                             103    dc.w  $851C
+000F7B1E  851C                             104    dc.w  $851C
+000F7B20  851C                             105    dc.w  $851C
+000F7B22  851C                             106    dc.w  $851C
+000F7B24  851C                             107    dc.w  $851C
+000F7B26  851C                             108    dc.w  $851C
+000F7B28  851C                             109    dc.w  $851C
+000F7B2A  851C                             110    dc.w  $851C
+000F7B2C  851C                             111    dc.w  $851C
+000F7B2E  851C                             112    dc.w  $851C
+000F7B30                                   113  
+000F7B30                                   114  patch_hud_stage:
+000F7B30  8515                             115    dc.w  $8515 ; E
+000F7B32  8513                             116    dc.w  $8513 ; S
+000F7B34  8516                             117    dc.w  $8516 ; T
+000F7B36  8517                             118    dc.w  $8517 ; Á
+000F7B38  850D                             119    dc.w  $850D ; G
+000F7B3A  8511                             120    dc.w  $8511 ; I
+000F7B3C  850C                             121    dc.w  $850C ; O
+000F7B3E                                   122  
+000F7B3E                                   123  patch_hud_rest:
+000F7B3E  8518                             124    dc.w  $8518 ; V
+000F7B40  8511                             125    dc.w  $8511 ; I
+000F7B42  850F                             126    dc.w  $850F ; D
+000F7B44  850E                             127    dc.w  $850E ; A
+000F7B46  8519                             128    dc.w  $8519 ; S
+
+No errors detected
+No warnings generated
