@@ -90,7 +90,7 @@ if __name__ == '__main__':
         # Each tile column is result of modulo 8
         column = int(i % 8)
         # Each tile line is result of division by 8 then modulo 8
-        line = int(i / 8) % 8
+        line = (int(i / 8) % 8)
         # Each tile is result of division by 64 = 8 columns * 8 lines
         tile = int(i / 64)
         # Each pixel bit is 1 color (multiply by 100 to convert to RGB)
@@ -106,7 +106,10 @@ if __name__ == '__main__':
         R = ((pixel >> 3) & 0x1) * 100
         # Get X , Y and put on Image
         x = column + int((tile * 8) % image_width)
-        y = line + (int((tile * 8) / image_width) * 8)
+        y = line + int((tile * 8) / image_width) * 8
+
+        print(column, line, tile)
+        print(x, y)
         pixels[x, y] = (R, G, B, A)
     try:
       os.stat('gfx')
