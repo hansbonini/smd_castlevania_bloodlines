@@ -1,0 +1,11 @@
+[+] Expanding ROM...DONE!
+[+] Patching Intro Scripts...DONE!
+[+] Patching default GFX Table...DONE!
+[+] Patching Bloodlines Subtitle GFX...DONE!
+[+] Patching Menu Text...DONE!
+[+] Patching Stage Call Screen...DONE!
+[+] Patching HUD...DONE!
+[+] Fixing Checksum...
+Current Checksum: B7BD
+Correct Checksum: 4283
+[+] FINISH!
