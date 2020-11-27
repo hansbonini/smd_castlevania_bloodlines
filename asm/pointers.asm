@@ -34,8 +34,14 @@ print "DONE!\n"
 // * Patch Credits                                        *
 // ********************************************************
 print "[+] Patching Credits..."
+origin $00008102
+    dl credits_congratulation_1
+    dl credits_congratulation_2
+    dl credits_congratulation_3
 origin $00008188
     jmp patch_credits_boss_name
+origin $00008340
+    jmp patch_credits_developers
 print "DONE!\n"
 
 

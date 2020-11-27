@@ -126,6 +126,47 @@ macro gameText(STRING) {
     db  {STRING}
     db  $FE
 }
+macro creditsText(STRING) {
+    map ' ', $00
+    map '.', $13
+    map '_', $12
+    map $2C, $11 // ','
+    map '!', $10
+    map '1', $14
+    map '7', $15
+    map '9', $16
+    map 'A', $17
+    map 'B', $18
+    map 'C', $19
+    map 'D', $1A
+    map 'E', $1B
+    map 'F', $1C   
+    map 'G', $1D
+    map 'H', $1E
+    map 'I', $1F
+    map 'J', $20
+    map 'L', $21
+    map 'M', $22
+    map 'N', $23
+    map 'O', $24
+    map 'P', $25
+    map 'R', $26
+    map 'S', $27
+    map 'T', $28
+    map 'U', $29
+    map 'V', $2A
+    map 'Y', $2B
+    map 'Z', $2C
+    map '{', $2D
+    map '}', $2E
+    map '@', $2F
+    map '*', $30
+    map '-', $31
+    map 'K', $32
+    map 'Q', $33
+    map '_', $34
+    db  {STRING}
+}
 macro menuText(STRING) {
 
     map ' ', $0000
@@ -241,34 +282,27 @@ macro ingameMessage2(WIDTH, COLUMN, LINE, STRING) {
 
 macro bossNames(COLUMN, STRING) {
     map ' ', $00
-    map 'A', $16
-    map 'B', $18
-    map 'C', $1A
-    map 'D', $1C
-    map 'E', $1E
-    map 'F', $29
-    map 'G', $22
-    map 'H', $24
-    map 'I', $26
-    map 'J', $28
-    map 'K', $2A
-    map 'L', $2C
-    map 'M', $2E
-    map 'N', $30
-    map 'O', $32
-    map 'P', $34
-    map 'Q', $36
-    map 'R', $38
-    map 'S', $3A  
-    map 'T', $3C
-    map 'U', $3E
-    map 'V', $40
-    map 'W', $42
-    map 'X', $43
-    map 'Y', $46
-    map 'Z', $48
+    map 'A', $02
+    map 'C', $04
+    map 'D', $06
+    map 'E', $08
+    map 'G', $0A
+    map 'I', $0C
+    map 'L', $0E
+    map 'M', $10
+    map 'N', $12
+    map 'O', $14
+    map 'P', $16
+    map 'R', $18
+    map 'S', $1A  
+    map 'T', $1C
+    map 'U', $1E
+    map 'V', $20
+    map 'Z', $22
+    map '{', $24
 
-    dw  {COLUMN}
+    db  $00
+    db  {COLUMN}
     db  {STRING}
     db  $FD
 }
@@ -286,4 +320,9 @@ macro selectStage(STAGE_ID) {
 macro disablePlayerCollision() {
     origin $1265E
     dw $600E
+}
+
+macro creditsTextPosition(LINE, COLUMN) {
+    db {LINE}
+    db {COLUMN}
 }

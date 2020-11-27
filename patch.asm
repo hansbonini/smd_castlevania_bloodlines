@@ -141,12 +141,28 @@ patch_stage_id:
     rts
 
 patch_credits_boss_name:
-    clr     d0
-    move.w  (credits_boss_table,pc,d1),d0
-    add.w   d0,d0
-    lea     (credits_boss_names,pc,d1).l,a0
-    adda.l  d0,a0
-    jmp     ($8196).l
+    cmp.b   #$02,d0
+    beq     load_bosses_font
+patch_credits_boss_name_rtn:
+    movea.l #credits_boss_table,a0
+    adda.w  d0,a0
+    move.w  (a0),d0
+    movea.l #credits_boss_names,a0
+    adda.w  d0,a0
+    jmp     ($8190).l
+
+load_bosses_font:
+    loadUncompressedGFX(gfx_blank, $14C0, (gfx_blank_end-gfx_blank))
+    loadUncompressedGFX(font_credits_bosses, $2040, (font_credits_bosses_end-font_credits_bosses))
+    jmp     patch_credits_boss_name_rtn
+
+patch_credits_developers:
+    movea.l #credits_table,a0
+    adda.w  d0,a0
+    move.w  (a0),d0
+    movea.l #credits,a0
+    adda.w  d0,a0
+    jmp     ($8348).l
 
 patch_bloodlines_tilemap:
     save_registers_to_sp()
@@ -517,3 +533,19 @@ gfx_bio_card_john_end:
 gfx_bio_card_eric:
     insert "data/gfx/bio_card_eric.bin"
 gfx_bio_card_eric_end:
+
+
+font_credits_bosses:
+    insert "data/gfx/font_credits_bosses.bin"
+font_credits_bosses_end:
+
+gfx_blank:
+    dl $00DDDD00
+    dl $0D0000D0
+    dl $D0DDDD0D
+    dl $D0D0000D
+    dl $D0D0000D
+    dl $D0DDDD0D
+    dl $0D0000D0
+    dl $00DDDD00
+gfx_blank_end:

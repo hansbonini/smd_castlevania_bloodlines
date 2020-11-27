@@ -5,7 +5,7 @@ origin $00101000
 // * Title Screen Menus and Texts                         *
 // ********************************************************
 patch_menu_pressstartbutton_text:
-    menuText("      ARPERTE START        ")
+    menuText("       APERTE START        ")
 patch_menu_pressstartbutton_text_end:
 
 patch_menu_konami_text:

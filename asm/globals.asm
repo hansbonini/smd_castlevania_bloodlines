@@ -11,7 +11,7 @@
 // *  - DEBUG_INVENCIBILITY(BOOL ENABLE):                 *
 // *    Disable Player Collision: Default 0               *
 // ********************************************************
-define DEBUG(1)
+define DEBUG(0)
 define DEBUG_STAGE(0)
 define DEBUG_SUBSTAGE(1)
 define DEBUG_INVENCIBILITY(1)
